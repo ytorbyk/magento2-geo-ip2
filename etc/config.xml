@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2015 ToBai. All rights reserved.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <tobai_geoip2>
+            <database>
+                <available>country</available>
+                <auto_update>0</auto_update>
+            </database>
+            <web_service>
+                <license_key backend_model="Magento\Config\Model\Config\Backend\Encrypted" />
+                <host>geoip.maxmind.com</host>
+            </web_service>
+        </tobai_geoip2>
+    </default>
+</config>

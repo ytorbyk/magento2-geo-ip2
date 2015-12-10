@@ -1,0 +1,31 @@
+{
+  "name": "tobai/magento2-geo-ip2",
+  "description": "Integrate MaxMind GeoIP2 DB into Magento 2.",
+  "keywords": ["magento2", "MaxMind"],
+  "type": "magento2-module",
+  "version": "1.0.0",
+  "license":["MIT"],
+  "require": {
+    "php": "~5.5.0|~5.6.0|~7.0.0",
+    "magento/magento-composer-installer": "*",
+    "geoip2/geoip2": "~2.0"
+  },
+  "extra": {
+    "map": [
+      [
+        "*",
+        "Tobai/GeoIp2"
+      ]
+    ]
+  },
+  "authors": [
+    {
+      "name": "Yurii Torbyk",
+      "homepage": "http://to-bai.com/"
+    },
+    {
+      "name": "Vitalii Bairak",
+      "homepage": "http://to-bai.com/"
+    }
+  ]
+}

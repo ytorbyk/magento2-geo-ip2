@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2015 ToBai. All rights reserved.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="tobai" translate="label" sortOrder="500">
+            <label>ToBai</label>
+        </tab>
+        <section id="tobai_geoip2" translate="label" type="text" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>GeoIP2</label>
+            <tab>tobai</tab>
+            <resource>Tobai_GeoIp2::config_tobai_geoip2</resource>
+            <group id="database" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>GeoIP2Lite databases update</label>
+                <field id="available" translate="label" type="Tobai\GeoIp2\Model\System\Data\Form\Element\AvailableDb" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Choose Database For Update</label>
+                    <source_model>Tobai\GeoIp2\Model\System\Config\Source\AvailableDb</source_model>
+                </field>
+                <field id="status" translate="label" type="label" sortOrder="20" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Last Update</label>
+                    <frontend_model>Tobai\GeoIp2\Block\Adminhtml\System\Config\Status</frontend_model>
+                </field>
+                <field id="auto_update" translate="label" type="select" sortOrder="30" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Update By Cron</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="update" translate="label" type="button" sortOrder="40" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Database Update</label>
+                    <frontend_model>Tobai\GeoIp2\Block\Adminhtml\System\Config\Update</frontend_model>
+                    <comment>If you update GeoIP2 database too often you may be banned for several hours.</comment>
+                    <depends>
+                        <field id="auto_update">0</field>
+                    </depends>
+                </field>
+            </group>
+            <group id="web_service" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>GeoIP2 WebService</label>
+                <field id="user_id" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>User Id</label>
+                </field>
+                <field id="license_key" translate="label" type="obscure" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>License Key</label>
+                    <backend_model>Magento\Config\Model\Config\Backend\Encrypted</backend_model>
+                </field>
+                <field id="host" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Host</label>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

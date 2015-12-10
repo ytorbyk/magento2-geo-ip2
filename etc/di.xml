@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2015 ToBai. All rights reserved.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Tobai\GeoIp2\Model\CountryInterface" type="Tobai\GeoIp2\Model\Database\Data\Country" />
+    <type name="Tobai\GeoIp2\Model\Database">
+        <arguments>
+            <argument name="databases" xsi:type="array">
+                <item name="country" xsi:type="string">GeoLite2-Country.mmdb</item>
+                <item name="city" xsi:type="string">GeoLite2-City.mmdb</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Tobai\GeoIp2\Model\System\Config\Source\AvailableDb">
+        <arguments>
+            <argument name="databases" xsi:type="array">
+                <item name="country" xsi:type="string"><![CDATA[Country database]]></item>
+                <item name="city" xsi:type="string"><![CDATA[City database]]></item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Tobai\GeoIp2\Model\Database\Updater\Selected">
+        <arguments>
+            <argument name="updater" xsi:type="object">Tobai\GeoIp2\Model\Database\Updater</argument>
+        </arguments>
+    </type>
+    <type name="Tobai\GeoIp2\Model\Database\Updater">
+        <arguments>
+            <argument name="archive" xsi:type="object">Magento\Framework\Archive\Gz</argument>
+            <argument name="dbLocation" xsi:type="string">http://geolite.maxmind.com/download/geoip/database/%db_name%.gz</argument>
+            <argument name="dbArchiveExt" xsi:type="string">.gz</argument>
+        </arguments>
+    </type>
+</config>
