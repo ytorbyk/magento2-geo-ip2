@@ -13,35 +13,17 @@ use Magento\Framework\ObjectManagerInterface;
 class ClientFactory
 {
     /**
-     * @var ObjectManagerInterface
-     */
-    protected $objectManager;
-
-    /**
-     * Instance name to create
-     *
-     * @var string
-     */
-    protected $instanceName;
-
-    /**
      * @var \Tobai\GeoIp2\Model\WebService\Config
      */
     protected $config;
 
     /**
      * @param \Tobai\GeoIp2\Model\WebService\Config $config
-     * @param ObjectManagerInterface $objectManager
-     * @param string $instanceName
      */
     public function __construct(
-        Config $config,
-        ObjectManagerInterface $objectManager,
-        $instanceName = 'GeoIp2\WebService\Client'
+        \Tobai\GeoIp2\Model\WebService\Config $config
     ) {
         $this->config = $config;
-        $this->objectManager = $objectManager;
-        $this->instanceName = $instanceName;
     }
 
     /**
@@ -56,31 +38,12 @@ class ClientFactory
             $data['options'] = [];
         }
 
-        $data['options'] += $this->getDefaultOptions();
-        $data = $data + $this->getConfigCredentials();
+        $userId = !empty($data['userId']) ? $data['userId'] : $this->config->getUserId();
+        $licenseKey = !empty($data['licenseKey']) ? $data['licenseKey'] : $this->config->getLicenseKey();
+        $locales = !empty($data['locales']) ? $data['locales'] : ['en'];
+        $options = $data['options'] + ['host' => $this->config->getHost()];
 
-        $client = $this->objectManager->create($this->instanceName, $data);
-
-        if (!$client instanceof \GeoIp2\WebService\Client) {
-            throw new \InvalidArgumentException(get_class($client) . ' must be an instance of \GeoIp2\WebService\Client.');
-        }
-
+        $client = new \GeoIp2\WebService\Client($userId, $licenseKey, $locales, $options);
         return $client;
-    }
-
-    /**
-     * @return array
-     */
-    protected function getConfigCredentials()
-    {
-        return [
-            'userId' => $this->config->getUserId(),
-            'licenseKey' => $this->config->getLicenseKey()
-        ];
-    }
-
-    protected function getDefaultOptions()
-    {
-        return ['host' => $this->config->getHost()];
     }
 }

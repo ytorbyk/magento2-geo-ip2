@@ -7,8 +7,6 @@ namespace Tobai\GeoIp2\Block\Adminhtml\System\Config;
 
 use Magento\Framework\Data\Form\Element\AbstractElement;
 use Magento\Config\Block\System\Config\Form\Field;
-use Magento\Backend\Block\Template\Context;
-use Tobai\GeoIp2\Model;
 
 /**
  * Class Status
@@ -38,10 +36,10 @@ class Status extends Field
      * @param array $data
      */
     public function __construct(
-        Model\Database\Config $config,
-        Model\Database $database,
-        Model\System\Config\Source\AvailableDb $availableDb,
-        Context $context,
+        \Tobai\GeoIp2\Model\Database\Config $config,
+        \Tobai\GeoIp2\Model\Database $database,
+        \Tobai\GeoIp2\Model\System\Config\Source\AvailableDb $availableDb,
+        \Magento\Backend\Block\Template\Context $context,
         array $data = []
     ) {
         $this->config = $config;

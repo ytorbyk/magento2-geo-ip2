@@ -6,9 +6,6 @@
 namespace Tobai\GeoIp2\Model\Database\Data;
 
 use Tobai\GeoIp2\Model\CountryInterface;
-use Tobai\GeoIp2\Model\Database\ReaderFactory;
-use Magento\Framework\HTTP\PhpEnvironment\Request;
-use Psr\Log\LoggerInterface as Logger;
 
 class City implements CountryInterface
 {
@@ -28,19 +25,19 @@ class City implements CountryInterface
     protected $httpRequest;
 
     /**
-     * @var Logger
+     * @var \Psr\Log\LoggerInterface
      */
     protected $logger;
 
     /**
      * @param \Tobai\GeoIp2\Model\Database\ReaderFactory $readerFactory
      * @param \Magento\Framework\HTTP\PhpEnvironment\Request $httpRequest
-     * @param Logger $logger
+     * @param \Psr\Log\LoggerInterface $logger
      */
     public function __construct(
-        ReaderFactory $readerFactory,
-        Request $httpRequest,
-        Logger $logger
+        \Tobai\GeoIp2\Model\Database\ReaderFactory $readerFactory,
+        \Magento\Framework\HTTP\PhpEnvironment\Request $httpRequest,
+        \Psr\Log\LoggerInterface $logger
     ) {
         $this->readerFactory = $readerFactory;
         $this->httpRequest = $httpRequest;
@@ -53,8 +50,8 @@ class City implements CountryInterface
     public function getCity()
     {
         try {
-            $ip = $this->httpRequest->getClientIp();
-            $city = $this->getReader()->city($ip);
+            $clientIp = $this->httpRequest->getClientIp();
+            $city = $this->getReader()->city($clientIp);
         } catch (\Exception $e) {
             $this->logger->critical($e);
             $city = false;

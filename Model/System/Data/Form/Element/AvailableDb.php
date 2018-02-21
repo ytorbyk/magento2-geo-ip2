@@ -5,14 +5,10 @@
 
 namespace Tobai\GeoIp2\Model\System\Data\Form\Element;
 
-use Magento\Framework\Data\Form\Element;
-use Magento\Framework\Escaper;
-use Tobai\GeoIp2\Model\System\Config\Source;
-
 /**
  * Class AvailableDb
  */
-class AvailableDb extends Element\Multiselect
+class AvailableDb extends \Magento\Framework\Data\Form\Element\Multiselect
 {
     /**
      * @var \Tobai\GeoIp2\Model\System\Config\Source\AvailableDb
@@ -27,10 +23,10 @@ class AvailableDb extends Element\Multiselect
      * @param array $data
      */
     public function __construct(
-        Source\AvailableDb $sourceAvailableDb,
-        Element\Factory $factoryElement,
-        Element\CollectionFactory $factoryCollection,
-        Escaper $escaper,
+        \Tobai\GeoIp2\Model\System\Config\Source\AvailableDb $sourceAvailableDb,
+        \Magento\Framework\Data\Form\Element\Factory $factoryElement,
+        \Magento\Framework\Data\Form\Element\CollectionFactory $factoryCollection,
+        \Magento\Framework\Escaper $escaper,
         $data = []
     ) {
         $this->sourceAvailableDb = $sourceAvailableDb;

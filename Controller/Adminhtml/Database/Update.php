@@ -5,9 +5,7 @@
 
 namespace Tobai\GeoIp2\Controller\Adminhtml\Database;
 
-use Tobai\GeoIp2\Model\Database\Updater\Selected;
 use Magento\Backend\App\Action;
-use Magento\Framework\View\LayoutFactory;
 use Magento\Framework\Controller\ResultFactory;
 use Magento\Framework\Controller\Result\Json;
 use Magento\Framework\Exception\LocalizedException;
@@ -15,6 +13,8 @@ use Psr\Log\LoggerInterface as Logger;
 
 class Update extends Action
 {
+    const ADMIN_RESOURCE = 'Tobai_GeoIp2::config_tobai_geoip2';
+
     /**
      * @var \Tobai\GeoIp2\Model\Database\Updater\Selected
      */
@@ -26,7 +26,7 @@ class Update extends Action
     protected $layoutFactory;
 
     /**
-     * @var Logger
+     * @var \Psr\Log\LoggerInterface
      */
     protected $logger;
 
@@ -36,11 +36,11 @@ class Update extends Action
      * @param Logger $logger
      * @param \Magento\Backend\App\Action\Context $context
      */
-    function __construct(
-        Selected $updaterSelected,
-        LayoutFactory $layoutFactory,
-        Logger $logger,
-        Action\Context $context
+    public function __construct(
+        \Tobai\GeoIp2\Model\Database\Updater\Selected $updaterSelected,
+        \Magento\Framework\View\LayoutFactory $layoutFactory,
+        \Psr\Log\LoggerInterface $logger,
+        \Magento\Backend\App\Action\Context $context
     ) {
         $this->updaterSelected = $updaterSelected;
         $this->layoutFactory = $layoutFactory;
@@ -81,15 +81,7 @@ class Update extends Action
         $layout = $this->layoutFactory->create();
 
         /** @var \Tobai\GeoIp2\Block\Adminhtml\System\Config\Status $statusBlock */
-        $statusBlock = $layout->createBlock('Tobai\GeoIp2\Block\Adminhtml\System\Config\Status');
+        $statusBlock = $layout->createBlock(\Tobai\GeoIp2\Block\Adminhtml\System\Config\Status::class);
         return $statusBlock->getDbStatus();
-    }
-
-    /**
-     * @return bool
-     */
-    protected function _isAllowed()
-    {
-        return $this->_authorization->isAllowed('Tobai_GeoIp2::config_tobai_geoip2');
     }
 }

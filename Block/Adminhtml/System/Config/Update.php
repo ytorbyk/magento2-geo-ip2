@@ -13,6 +13,10 @@ use Magento\Config\Block\System\Config\Form\Field;
  */
 class Update extends Field
 {
+    /**
+     * @param \Magento\Framework\Data\Form\Element\AbstractElement $element
+     * @return string
+     */
     public function render(AbstractElement $element)
     {
         $element->unsScope();

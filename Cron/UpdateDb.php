@@ -5,9 +5,6 @@
 
 namespace Tobai\GeoIp2\Cron;
 
-use Tobai\GeoIp2\Model\Database;
-use Psr\Log\LoggerInterface as Logger;
-
 /**
  * Class Observer
  */
@@ -24,19 +21,19 @@ class UpdateDb
     protected $databaseConfig;
 
     /**
-     * @var Logger
+     * @var \Psr\Log\LoggerInterface
      */
     protected $logger;
 
     /**
      * @param \Tobai\GeoIp2\Model\Database\Updater\Selected $updaterSelected
      * @param \Tobai\GeoIp2\Model\Database\Config $databaseConfig
-     * @param Logger $logger
+     * @param \Psr\Log\LoggerInterface $logger
      */
     public function __construct(
-        Database\Updater\Selected $updaterSelected,
-        Database\Config $databaseConfig,
-        Logger $logger
+        \Tobai\GeoIp2\Model\Database\Updater\Selected $updaterSelected,
+        \Tobai\GeoIp2\Model\Database\Config $databaseConfig,
+        \Psr\Log\LoggerInterface $logger
     ) {
         $this->updaterSelected = $updaterSelected;
         $this->databaseConfig = $databaseConfig;

@@ -5,8 +5,6 @@
 
 namespace Tobai\GeoIp2\Model\WebService;
 
-use Magento\Framework\App\Config\ScopeConfigInterface;
-
 /**
  * WebService config model
  */
@@ -20,7 +18,9 @@ class Config
     /**
      * @param \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig
      */
-    public function __construct(ScopeConfigInterface $scopeConfig) {
+    public function __construct(
+        \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig
+    ) {
         $this->scopeConfig = $scopeConfig;
     }
 

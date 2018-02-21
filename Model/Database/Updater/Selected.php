@@ -5,10 +5,6 @@
 
 namespace Tobai\GeoIp2\Model\Database\Updater;
 
-use Tobai\GeoIp2\Model\Database\Config;
-use Tobai\GeoIp2\Model\Database\UpdaterInterface;
-use Magento\Framework\Exception\LocalizedException;
-
 /**
  * Update selected db in configuration
  */
@@ -29,15 +25,15 @@ class Selected
      * @param \Tobai\GeoIp2\Model\Database\UpdaterInterface $updater
      */
     public function __construct(
-        Config $config,
-        UpdaterInterface $updater
+        \Tobai\GeoIp2\Model\Database\Config $config,
+        \Tobai\GeoIp2\Model\Database\UpdaterInterface $updater
     ) {
         $this->config = $config;
         $this->updater = $updater;
     }
 
     /**
-     * @throws LocalizedException
+     * @throws \Magento\Framework\Exception\LocalizedException
      */
     public function update()
     {

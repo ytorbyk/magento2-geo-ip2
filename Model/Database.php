@@ -6,7 +6,6 @@
 namespace Tobai\GeoIp2\Model;
 
 use Magento\Framework\App\Filesystem\DirectoryList;
-use Magento\Framework\Filesystem;
 
 /**
  * Database model
@@ -42,7 +41,7 @@ class Database
      * @param array $databases
      */
     public function __construct(
-        Filesystem $filesystem,
+        \Magento\Framework\Filesystem $filesystem,
         array $databases
     ) {
         $this->directory = $filesystem->getDirectoryWrite(DirectoryList::VAR_DIR);

@@ -6,9 +6,6 @@
 namespace Tobai\GeoIp2\Model\WebService\Data;
 
 use Tobai\GeoIp2\Model\CountryInterface;
-use Tobai\GeoIp2\Model\WebService\ClientFactory;
-use Magento\Framework\HTTP\PhpEnvironment\Request;
-use Psr\Log\LoggerInterface as Logger;
 
 class Country implements CountryInterface
 {
@@ -28,19 +25,19 @@ class Country implements CountryInterface
     protected $httpRequest;
 
     /**
-     * @var Logger
+     * @var \Psr\Log\LoggerInterface
      */
     protected $logger;
 
     /**
      * @param \Tobai\GeoIp2\Model\WebService\ClientFactory $clientFactory
      * @param \Magento\Framework\HTTP\PhpEnvironment\Request $httpRequest
-     * @param Logger $logger
+     * @param \Psr\Log\LoggerInterface $logger
      */
     public function __construct(
-        ClientFactory $clientFactory,
-        Request $httpRequest,
-        Logger $logger
+        \Tobai\GeoIp2\Model\WebService\ClientFactory $clientFactory,
+        \Magento\Framework\HTTP\PhpEnvironment\Request $httpRequest,
+        \Psr\Log\LoggerInterface $logger
     ) {
         $this->clientFactory = $clientFactory;
         $this->httpRequest = $httpRequest;
@@ -53,8 +50,8 @@ class Country implements CountryInterface
     public function getCountry()
     {
         try {
-            $ip = $this->httpRequest->getClientIp();
-            $country = $this->getClient()->country($ip);
+            $clientIp = $this->httpRequest->getClientIp();
+            $country = $this->getClient()->country($clientIp);
         } catch (\Exception $e) {
             $this->logger->critical($e);
             $country = false;
