@@ -6,8 +6,6 @@ We are happy that you have chosen our free extension ToBai GeoIP2. This extensio
 *   It is possible to easily add any other IP database
 *   There are special settings in extension configs to set connection with other databases using web service client, e.g. paid maxmind.com databases
 
-More information about the extension you can find at this page - <a href="http://www.to-bai.com/magento-2-extensions/geoip2.html" target="_blank">http://www.to-bai.com/magento-2-extensions/geoip2.html</a>
-
 <h2>Installation</h2>
 
 Please follow next instructions to successfully install ToBai GeoIP2 in your Magento 2 store.
@@ -18,11 +16,11 @@ Please follow next instructions to successfully install ToBai GeoIP2 in your Mag
 
 2. Add extension to composer require section using this command:
 
-        composer require tobai/magento2-geo-ip2 ~1.0.0
+        composer require tobai/magento2-geo-ip2
 
 3. Enable module and upgrade with this commands:
 
-        bin/magento module:enable --clear-static-content Tobai_GeoIp2
+        bin/magento module:enable Tobai_GeoIp2
         bin/magento setup:upgrade
 
 4. Check under Stores->Configuration->Advanced->Advanced that the module Tobai_GeoIp2 is present. If Tobai_GeoIp2 displays in alphabetical order, you successfully installed the reference module!
@@ -33,7 +31,3 @@ Please follow next instructions to successfully install ToBai GeoIP2 in your Mag
         bin/magento cache:enable
 
 Now you should see new ToBai tab at Stores > Configuration. When you click at this tab you will see GeoIP2 section.
-
-Before enabling cache you may compile DI. For compiling run command (before and after "var/di" directory must be deleted):
-
-    bin/magento setup:di:compile
